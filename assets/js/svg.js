@@ -26,16 +26,16 @@ window.ART = (function () {
         <stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#FFDCEC"/></radialGradient></defs>
       <ellipse cx="100" cy="200" rx="40" ry="8" fill="#000" opacity=".07"/>
       <path d="M56 112 C60 58 140 58 144 112" fill="none" stroke="#8A5CFF" stroke-width="6" stroke-linecap="round"/>
-      <ellipse cx="100" cy="120" rx="28" ry="30" fill="url(#ciciG)"/>
-      <ellipse cx="86" cy="150" rx="13" ry="10" fill="url(#ciciG)"/><ellipse cx="114" cy="150" rx="13" ry="10" fill="url(#ciciG)"/>
+      <ellipse cx="100" cy="120" rx="28" ry="30" fill="url(#ciciG)" stroke="#D98FBB" stroke-width="2.6"/>
+      <ellipse cx="86" cy="150" rx="13" ry="10" fill="url(#ciciG)" stroke="#D98FBB" stroke-width="2.6"/><ellipse cx="114" cy="150" rx="13" ry="10" fill="url(#ciciG)" stroke="#D98FBB" stroke-width="2.6"/>
       <path d="M80 114 Q62 112 52 118" fill="none" stroke="#FFE7F0" stroke-width="13" stroke-linecap="round"/>
       <path d="M120 114 Q138 112 148 118" fill="none" stroke="#FFE7F0" stroke-width="13" stroke-linecap="round"/>
-      <circle cx="50" cy="119" r="8" fill="url(#ciciG)"/><circle cx="150" cy="119" r="8" fill="url(#ciciG)"/>
+      <circle cx="50" cy="119" r="8" fill="url(#ciciG)" stroke="#D98FBB" stroke-width="2.6"/><circle cx="150" cy="119" r="8" fill="url(#ciciG)" stroke="#D98FBB" stroke-width="2.6"/>
       <rect x="46" y="116" width="8" height="18" rx="4" fill="#6B41E0"/><rect x="146" y="116" width="8" height="18" rx="4" fill="#6B41E0"/>
       <path d="M50 122 C64 184 136 184 150 122" fill="none" stroke="#8A5CFF" stroke-width="6" stroke-linecap="round"/>
-      <g transform="rotate(-10 100 66)"><ellipse cx="80" cy="22" rx="12" ry="34" fill="url(#ciciG)"/><ellipse cx="80" cy="24" rx="6" ry="22" fill="#FF9CC6"/></g>
-      <g transform="rotate(10 100 66)"><ellipse cx="120" cy="22" rx="12" ry="34" fill="url(#ciciG)"/><ellipse cx="120" cy="24" rx="6" ry="22" fill="#FF9CC6"/></g>
-      <circle cx="100" cy="66" r="42" fill="url(#ciciG)"/>
+      <g transform="rotate(-10 100 66)"><ellipse cx="80" cy="22" rx="12" ry="34" fill="url(#ciciG)" stroke="#D98FBB" stroke-width="2.6"/><ellipse cx="80" cy="24" rx="6" ry="22" fill="#FF9CC6"/></g>
+      <g transform="rotate(10 100 66)"><ellipse cx="120" cy="22" rx="12" ry="34" fill="url(#ciciG)" stroke="#D98FBB" stroke-width="2.6"/><ellipse cx="120" cy="24" rx="6" ry="22" fill="#FF9CC6"/></g>
+      <circle cx="100" cy="66" r="42" fill="url(#ciciG)" stroke="#D98FBB" stroke-width="2.6"/>
       <circle cx="74" cy="78" r="10" fill="#FF5D8F"/><circle cx="126" cy="78" r="10" fill="#FF5D8F"/>
       <ellipse cx="86" cy="64" rx="7.5" ry="10" fill="#3A2233"/><ellipse cx="114" cy="64" rx="7.5" ry="10" fill="#3A2233"/>
       <circle cx="83" cy="60" r="2.6" fill="#fff"/><circle cx="111" cy="60" r="2.6" fill="#fff"/>
@@ -53,15 +53,15 @@ window.ART = (function () {
       <path d="M84 140 L64 166 L64 190" fill="none" stroke="#FBA23C" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M116 140 L136 166 L136 190" fill="none" stroke="#FBA23C" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
       <ellipse cx="64" cy="192" rx="15" ry="8" fill="#F0912E"/><ellipse cx="136" cy="192" rx="15" ry="8" fill="#F0912E"/>
-      <ellipse cx="100" cy="122" rx="34" ry="29" fill="url(#kuanG)"/>
+      <ellipse cx="100" cy="122" rx="34" ry="29" fill="url(#kuanG)" stroke="#DE9A4A" stroke-width="2.6"/>
       <path d="M80 114 Q67 124 66 132" fill="none" stroke="#F0912E" stroke-width="15" stroke-linecap="round"/>
       <path d="M120 114 Q133 124 134 132" fill="none" stroke="#F0912E" stroke-width="15" stroke-linecap="round"/>
-      <circle cx="66" cy="133" r="12" fill="url(#kuanG)"/><circle cx="134" cy="133" r="12" fill="url(#kuanG)"/>
+      <circle cx="66" cy="133" r="12" fill="url(#kuanG)" stroke="#DE9A4A" stroke-width="2.6"/><circle cx="134" cy="133" r="12" fill="url(#kuanG)" stroke="#DE9A4A" stroke-width="2.6"/>
       <path d="M60 131 q6 -4 12 0 M60 135 q6 -3 12 0" fill="none" stroke="#E0954A" stroke-width="1.8" stroke-linecap="round"/>
       <path d="M122 131 q6 -4 12 0 M122 135 q6 -3 12 0" fill="none" stroke="#E0954A" stroke-width="1.8" stroke-linecap="round"/>
-      <circle cx="66" cy="32" r="18" fill="url(#kuanG)"/><circle cx="66" cy="32" r="9" fill="#FF8A6B"/>
-      <circle cx="134" cy="32" r="18" fill="url(#kuanG)"/><circle cx="134" cy="32" r="9" fill="#FF8A6B"/>
-      <circle cx="100" cy="66" r="43" fill="url(#kuanG)"/>
+      <circle cx="66" cy="32" r="18" fill="url(#kuanG)" stroke="#DE9A4A" stroke-width="2.6"/><circle cx="66" cy="32" r="9" fill="#FF8A6B"/>
+      <circle cx="134" cy="32" r="18" fill="url(#kuanG)" stroke="#DE9A4A" stroke-width="2.6"/><circle cx="134" cy="32" r="9" fill="#FF8A6B"/>
+      <circle cx="100" cy="66" r="43" fill="url(#kuanG)" stroke="#DE9A4A" stroke-width="2.6"/>
       <path d="M58 50 h84 l-5 15 h-74 z" fill="#E5484D"/><path d="M138 57 l18 6 -17 5z" fill="#C1272D"/><path d="M62 57 l-18 6 17 5z" fill="#C1272D"/>
       <path d="M83 40 v10 M100 38 v10 M117 40 v10" stroke="#C9702E" stroke-width="4" stroke-linecap="round"/>
       <circle cx="72" cy="80" r="11" fill="#FF5D3C" opacity=".8"/><circle cx="128" cy="80" r="11" fill="#FF5D3C" opacity=".8"/>

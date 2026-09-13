@@ -170,11 +170,9 @@ body:not(.show-zhuyin) rt { display: none; }
   width: 100%; max-width: 460px; margin-inline: auto;
   animation: floaty 6s ease-in-out infinite;
 }
-/* 幫角色加一圈細描邊，白色兔子在淺色底上也看得到輪廓 */
+/* 角色的柔和落地陰影（輪廓改用 SVG 內的實線描邊處理） */
 [data-art] svg, .who-card .art svg, .profile-pill .ava svg {
-  filter:
-    drop-shadow(1.5px 0 0 rgba(70,52,42,.28)) drop-shadow(-1.5px 0 0 rgba(70,52,42,.28))
-    drop-shadow(0 1.5px 0 rgba(70,52,42,.28)) drop-shadow(0 -1.5px 0 rgba(70,52,42,.28));
+  filter: drop-shadow(0 7px 9px rgba(0,0,0,.13));
 }
 .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
 
