@@ -181,9 +181,16 @@
     var set = (window.DATA_ENCOURAGE && DATA_ENCOURAGE[pr]) || [];
     var enc = $("#dailyEncourage");
     if (enc && set.length) {
-      var q = set[new Date().getDate() % set.length];
+      var lastKey = "xkxk.enc.last." + pr;
+      var idx = Math.floor(Math.random() * set.length);
+      if (set.length > 1) {
+        var last = C.safeGet(lastKey, -1), guard = 0;
+        while (idx === last && guard < 10) { idx = Math.floor(Math.random() * set.length); guard++; }
+      }
+      C.safeSet(lastKey, idx);
+      var q = set[idx];
       enc.innerHTML = `<div class="ava2">${pr === "kuan" ? ART.kuan() : ART.cici()}</div>
-        <div><div class="eyebrow">今天給${pr === "kuan" ? "寬寬" : "嬨嬨"}的一句話</div><p class="enc-quote">${q}</p></div>`;
+        <div><div class="eyebrow">給${pr === "kuan" ? "寬寬" : "嬨嬨"}的一句話</div><p class="enc-quote">${q}</p></div>`;
     }
     if (!counterMounted) { C.mountCounter(); counterMounted = true; }
     if (window.Zhuyin) Zhuyin.refresh();

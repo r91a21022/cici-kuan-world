@@ -1,8 +1,8 @@
 /* ============================================================
    全站可愛圖案（向量 SVG）
    全部用程式畫出來，不連外部圖片，所以永遠不會破圖，離線也看得到。
-   畫風：皮卡丘風（紅圓臉頰、大眼睛、圓潤）。
-   兔兔是姐姐嬨嬨（跳繩姿勢），老虎是弟弟寬寬（紮馬步姿勢）。
+   畫風：吉伊卡哇風（小小圓圓、線條簡單、小黑豆眼睛、軟綿綿療癒）。
+   兔兔是姐姐嬨嬨，老虎是弟弟寬寬。
    ============================================================ */
 window.ART = (function () {
 
@@ -19,56 +19,53 @@ window.ART = (function () {
     </svg>`;
   }
 
-  /* 嬨嬨：跳繩中的兔兔（皮卡丘風） */
+  /* 嬨嬨：吉伊卡哇風兔兔（小小圓圓、開心笑臉、手上一條小跳繩） */
   function cici() {
-    return `<svg viewBox="0 0 200 212" xmlns="http://www.w3.org/2000/svg" aria-label="嬨嬨的兔兔在跳繩">
-      <defs><radialGradient id="ciciG" cx="42%" cy="34%" r="72%">
-        <stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#FFDCEC"/></radialGradient></defs>
-      <ellipse cx="100" cy="200" rx="40" ry="8" fill="#000" opacity=".07"/>
-      <path d="M56 112 C60 58 140 58 144 112" fill="none" stroke="#8A5CFF" stroke-width="6" stroke-linecap="round"/>
-      <ellipse cx="100" cy="120" rx="28" ry="30" fill="url(#ciciG)" stroke="#D98FBB" stroke-width="2.6"/>
-      <ellipse cx="86" cy="150" rx="13" ry="10" fill="url(#ciciG)" stroke="#D98FBB" stroke-width="2.6"/><ellipse cx="114" cy="150" rx="13" ry="10" fill="url(#ciciG)" stroke="#D98FBB" stroke-width="2.6"/>
-      <path d="M80 114 Q62 112 52 118" fill="none" stroke="#FFE7F0" stroke-width="13" stroke-linecap="round"/>
-      <path d="M120 114 Q138 112 148 118" fill="none" stroke="#FFE7F0" stroke-width="13" stroke-linecap="round"/>
-      <circle cx="50" cy="119" r="8" fill="url(#ciciG)" stroke="#D98FBB" stroke-width="2.6"/><circle cx="150" cy="119" r="8" fill="url(#ciciG)" stroke="#D98FBB" stroke-width="2.6"/>
-      <rect x="46" y="116" width="8" height="18" rx="4" fill="#6B41E0"/><rect x="146" y="116" width="8" height="18" rx="4" fill="#6B41E0"/>
-      <path d="M50 122 C64 184 136 184 150 122" fill="none" stroke="#8A5CFF" stroke-width="6" stroke-linecap="round"/>
-      <g transform="rotate(-10 100 66)"><ellipse cx="80" cy="22" rx="12" ry="34" fill="url(#ciciG)" stroke="#D98FBB" stroke-width="2.6"/><ellipse cx="80" cy="24" rx="6" ry="22" fill="#FF9CC6"/></g>
-      <g transform="rotate(10 100 66)"><ellipse cx="120" cy="22" rx="12" ry="34" fill="url(#ciciG)" stroke="#D98FBB" stroke-width="2.6"/><ellipse cx="120" cy="24" rx="6" ry="22" fill="#FF9CC6"/></g>
-      <circle cx="100" cy="66" r="42" fill="url(#ciciG)" stroke="#D98FBB" stroke-width="2.6"/>
-      <circle cx="74" cy="78" r="10" fill="#FF5D8F"/><circle cx="126" cy="78" r="10" fill="#FF5D8F"/>
-      <ellipse cx="86" cy="64" rx="7.5" ry="10" fill="#3A2233"/><ellipse cx="114" cy="64" rx="7.5" ry="10" fill="#3A2233"/>
-      <circle cx="83" cy="60" r="2.6" fill="#fff"/><circle cx="111" cy="60" r="2.6" fill="#fff"/>
-      <path d="M94 78 Q100 84 106 78" fill="none" stroke="#B4557E" stroke-width="2.6" stroke-linecap="round"/>
-      <path d="M100 72 l-3 4 h6 z" fill="#FF8FB4"/>
+    return `<svg viewBox="0 0 200 212" xmlns="http://www.w3.org/2000/svg" aria-label="嬨嬨的兔兔，開心地笑著">
+      <ellipse cx="100" cy="202" rx="38" ry="7" fill="#000" opacity=".06"/>
+      <g transform="rotate(-8 78 46)"><ellipse cx="78" cy="46" rx="12" ry="34" fill="#fff" stroke="#ECD9E0" stroke-width="3"/><ellipse cx="78" cy="49" rx="5.5" ry="21" fill="#FADFE8"/></g>
+      <g transform="rotate(8 122 46)"><ellipse cx="122" cy="46" rx="12" ry="34" fill="#fff" stroke="#ECD9E0" stroke-width="3"/><ellipse cx="122" cy="49" rx="5.5" ry="21" fill="#FADFE8"/></g>
+      <ellipse cx="100" cy="152" rx="36" ry="33" fill="#fff" stroke="#ECD9E0" stroke-width="3"/>
+      <path d="M66 156 Q100 196 134 156" fill="none" stroke="#F4A9C6" stroke-width="4" stroke-linecap="round"/>
+      <ellipse cx="84" cy="184" rx="13" ry="8.5" fill="#fff" stroke="#ECD9E0" stroke-width="2.6"/>
+      <ellipse cx="116" cy="184" rx="13" ry="8.5" fill="#fff" stroke="#ECD9E0" stroke-width="2.6"/>
+      <ellipse cx="68" cy="158" rx="11" ry="13" fill="#fff" stroke="#ECD9E0" stroke-width="3"/>
+      <ellipse cx="132" cy="158" rx="11" ry="13" fill="#fff" stroke="#ECD9E0" stroke-width="3"/>
+      <rect x="63" y="150" width="7" height="15" rx="3.5" fill="#C3A5F0"/><rect x="130" y="150" width="7" height="15" rx="3.5" fill="#C3A5F0"/>
+      <circle cx="100" cy="92" r="45" fill="#fff" stroke="#ECD9E0" stroke-width="3"/>
+      <ellipse cx="82" cy="95" rx="6" ry="8" fill="#4A3B40"/><ellipse cx="118" cy="95" rx="6" ry="8" fill="#4A3B40"/>
+      <circle cx="79.6" cy="92" r="1.9" fill="#fff"/><circle cx="115.6" cy="92" r="1.9" fill="#fff"/>
+      <ellipse cx="73" cy="108" rx="7.5" ry="4.6" fill="#FAD0DD" opacity=".92"/><ellipse cx="127" cy="108" rx="7.5" ry="4.6" fill="#FAD0DD" opacity=".92"/>
+      <ellipse cx="100" cy="105" rx="3.4" ry="2.6" fill="#E89AAD"/>
+      <path d="M91 109 Q100 119 109 109" fill="none" stroke="#C98B9C" stroke-width="2.3" stroke-linecap="round"/>
     </svg>`;
   }
 
-  /* 寬寬：紮馬步的老虎（皮卡丘風） */
+  /* 寬寬：吉伊卡哇風老虎（小小圓圓、開心笑臉、簡單虎紋） */
   function kuan() {
-    return `<svg viewBox="0 0 200 212" xmlns="http://www.w3.org/2000/svg" aria-label="寬寬的老虎在紮馬步">
-      <defs><radialGradient id="kuanG" cx="42%" cy="32%" r="72%">
-        <stop offset="0" stop-color="#FFD265"/><stop offset="1" stop-color="#FF9E2E"/></radialGradient></defs>
-      <ellipse cx="100" cy="200" rx="52" ry="8" fill="#000" opacity=".08"/>
-      <path d="M84 140 L64 166 L64 190" fill="none" stroke="#FBA23C" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M116 140 L136 166 L136 190" fill="none" stroke="#FBA23C" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
-      <ellipse cx="64" cy="192" rx="15" ry="8" fill="#F0912E"/><ellipse cx="136" cy="192" rx="15" ry="8" fill="#F0912E"/>
-      <ellipse cx="100" cy="122" rx="34" ry="29" fill="url(#kuanG)" stroke="#DE9A4A" stroke-width="2.6"/>
-      <path d="M80 114 Q67 124 66 132" fill="none" stroke="#F0912E" stroke-width="15" stroke-linecap="round"/>
-      <path d="M120 114 Q133 124 134 132" fill="none" stroke="#F0912E" stroke-width="15" stroke-linecap="round"/>
-      <circle cx="66" cy="133" r="12" fill="url(#kuanG)" stroke="#DE9A4A" stroke-width="2.6"/><circle cx="134" cy="133" r="12" fill="url(#kuanG)" stroke="#DE9A4A" stroke-width="2.6"/>
-      <path d="M60 131 q6 -4 12 0 M60 135 q6 -3 12 0" fill="none" stroke="#E0954A" stroke-width="1.8" stroke-linecap="round"/>
-      <path d="M122 131 q6 -4 12 0 M122 135 q6 -3 12 0" fill="none" stroke="#E0954A" stroke-width="1.8" stroke-linecap="round"/>
-      <circle cx="66" cy="32" r="18" fill="url(#kuanG)" stroke="#DE9A4A" stroke-width="2.6"/><circle cx="66" cy="32" r="9" fill="#FF8A6B"/>
-      <circle cx="134" cy="32" r="18" fill="url(#kuanG)" stroke="#DE9A4A" stroke-width="2.6"/><circle cx="134" cy="32" r="9" fill="#FF8A6B"/>
-      <circle cx="100" cy="66" r="43" fill="url(#kuanG)" stroke="#DE9A4A" stroke-width="2.6"/>
-      <path d="M58 50 h84 l-5 15 h-74 z" fill="#E5484D"/><path d="M138 57 l18 6 -17 5z" fill="#C1272D"/><path d="M62 57 l-18 6 17 5z" fill="#C1272D"/>
-      <path d="M83 40 v10 M100 38 v10 M117 40 v10" stroke="#C9702E" stroke-width="4" stroke-linecap="round"/>
-      <circle cx="72" cy="80" r="11" fill="#FF5D3C" opacity=".8"/><circle cx="128" cy="80" r="11" fill="#FF5D3C" opacity=".8"/>
-      <ellipse cx="85" cy="66" rx="8" ry="11" fill="#2F1E14"/><ellipse cx="115" cy="66" rx="8" ry="11" fill="#2F1E14"/>
-      <circle cx="82" cy="62" r="2.8" fill="#fff"/><circle cx="112" cy="62" r="2.8" fill="#fff"/>
-      <path d="M100 78 l-4 5 h8 z" fill="#7A4420"/>
-      <path d="M100 83 q-6 6 -12 2 M100 83 q6 6 12 2" fill="none" stroke="#7A4420" stroke-width="2.4" stroke-linecap="round"/>
+    return `<svg viewBox="0 0 200 212" xmlns="http://www.w3.org/2000/svg" aria-label="寬寬的老虎，開心地笑著">
+      <ellipse cx="100" cy="202" rx="38" ry="7" fill="#000" opacity=".06"/>
+      <ellipse cx="72" cy="60" rx="15" ry="14" fill="#FCC888" stroke="#EAA85F" stroke-width="3"/>
+      <ellipse cx="128" cy="60" rx="15" ry="14" fill="#FCC888" stroke="#EAA85F" stroke-width="3"/>
+      <ellipse cx="72" cy="61" rx="6.5" ry="6" fill="#F0A45C"/><ellipse cx="128" cy="61" rx="6.5" ry="6" fill="#F0A45C"/>
+      <ellipse cx="100" cy="152" rx="35" ry="32" fill="#FCC888" stroke="#EAA85F" stroke-width="3"/>
+      <ellipse cx="100" cy="158" rx="19" ry="19" fill="#FFF5E8"/>
+      <ellipse cx="68" cy="158" rx="11" ry="13" fill="#FCC888" stroke="#EAA85F" stroke-width="3"/>
+      <ellipse cx="132" cy="158" rx="11" ry="13" fill="#FCC888" stroke="#EAA85F" stroke-width="3"/>
+      <ellipse cx="84" cy="184" rx="13" ry="8.5" fill="#FFF5E8" stroke="#EAA85F" stroke-width="2.6"/>
+      <ellipse cx="116" cy="184" rx="13" ry="8.5" fill="#FFF5E8" stroke="#EAA85F" stroke-width="2.6"/>
+      <circle cx="100" cy="92" r="45" fill="#FCC888" stroke="#EAA85F" stroke-width="3"/>
+      <path d="M100 60 Q98 69 100 78" fill="none" stroke="#D5822F" stroke-width="3.4" stroke-linecap="round"/>
+      <path d="M87 64 Q85 72 87 80" fill="none" stroke="#D5822F" stroke-width="3.4" stroke-linecap="round"/>
+      <path d="M113 64 Q115 72 113 80" fill="none" stroke="#D5822F" stroke-width="3.4" stroke-linecap="round"/>
+      <path d="M57 87 Q62 93 57 99" fill="none" stroke="#D5822F" stroke-width="3.2" stroke-linecap="round"/>
+      <path d="M143 87 Q138 93 143 99" fill="none" stroke="#D5822F" stroke-width="3.2" stroke-linecap="round"/>
+      <ellipse cx="100" cy="107" rx="24" ry="20" fill="#FFF5E8"/>
+      <ellipse cx="83" cy="94" rx="6" ry="8" fill="#4A3B40"/><ellipse cx="117" cy="94" rx="6" ry="8" fill="#4A3B40"/>
+      <circle cx="80.6" cy="91" r="1.9" fill="#fff"/><circle cx="114.6" cy="91" r="1.9" fill="#fff"/>
+      <ellipse cx="72" cy="112" rx="7.5" ry="4.4" fill="#F7B57E" opacity=".85"/><ellipse cx="128" cy="112" rx="7.5" ry="4.4" fill="#F7B57E" opacity=".85"/>
+      <path d="M100 103 l-4.5 5 h9 z" fill="#C96A3A"/>
+      <path d="M90 109 Q100 119 110 109" fill="none" stroke="#B06636" stroke-width="2.3" stroke-linecap="round"/>
     </svg>`;
   }
 
