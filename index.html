@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>嬨嬨寬寬的小天地</title>
+<meta name="description" content="嬨嬨和寬寬的秘密小天地。跳繩、武術、一起玩英文。">
+<meta property="og:title" content="嬨嬨寬寬的小天地">
+<meta property="og:description" content="我們家自己做的小網站。跳繩星球、武術道場、一起玩英文。">
+<meta property="og:image" content="assets/img/og.svg">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E%F0%9F%8C%9F%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/theme.css?v=9">
+</head>
+<body data-zone="home">
+
+<!-- ===== 進站密碼（沒設密碼就不會出現） ===== -->
+<div class="overlay" id="gate" hidden>
+  <div class="box">
+    <div style="font-size:56px">🔑</div>
+    <h2>歡迎回到我們的小天地</h2>
+    <p class="muted">輸入家裡的通關密語就可以進去。</p>
+    <div class="field" style="margin:18px 0">
+      <input id="gateInput" type="password" placeholder="請輸入密碼" autocomplete="off">
+    </div>
+    <button class="btn block" id="gateBtn">進去</button>
+  </div>
+</div>
+
+<!-- ===== 誰在玩 ===== -->
+<div class="overlay" id="who" hidden>
+  <div class="box">
+    <div class="eyebrow">歡迎回來</div>
+    <h2>今天是誰要來玩？</h2>
+    <p class="muted">選一個，你的收集和紀錄都會自己記得。</p>
+    <div class="who-pick">
+      <button class="who-card" data-who="cici"><div class="art"></div><b>嬨嬨</b><div class="muted">跳繩星球</div></button>
+      <button class="who-card" data-who="kuan"><div class="art"></div><b>寬寬</b><div class="muted">武術道場</div></button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 頁首 ===== -->
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="#home" data-nav="home">
+      <span class="logo" data-art="logo"></span>
+      <span class="full">嬨嬨寬寬的小天地</span>
+    </a>
+    <nav class="topbar-nav" style="display:flex;gap:6px;flex-wrap:wrap">
+      <a class="chip" href="#english" data-nav="english">英文</a>
+      <a class="chip" href="#jump" data-nav="jump">跳繩</a>
+      <a class="chip" href="#wushu" data-nav="wushu">武術</a>
+    </nav>
+    <div class="topbar-spacer"></div>
+    <button class="iconbtn" id="btnZhuyin" title="注音開關">ㄅ</button>
+    <button class="iconbtn" id="btnSound" title="聲音開關">🔊</button>
+    <button class="profile-pill" id="profilePill" title="換人玩">
+      <span class="ava"></span><span class="pname">選一個</span>
+    </button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ================= 首頁 ================= -->
+  <section class="view" id="view-home">
+    <div class="hero">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">我們家的秘密小天地</div>
+          <h1>嬨嬨寬寬的小天地</h1>
+          <p class="lead">這是爸爸和你們一起做的小網站。想練跳繩、想練武術、想玩英文，這裡都有你們自己的地盤。你說想要什麼，我們就一起把它做出來。</p>
+          <div class="hero-cta">
+            <a class="btn big" href="#english">開始玩 🎈</a>
+            <a class="btn ghost big" href="#wishes">我要許願 💫</a>
+          </div>
+        </div>
+        <div class="hero-art" data-art="hero-home" style="display:flex;gap:6px;align-items:flex-end;max-width:440px"></div>
+      </div>
+    </div>
+
+    <div class="center" style="margin:6px 0 26px">
+      <div class="counter">
+        <span style="font-size:22px">👀</span>
+        <span class="odo" id="counterDigits"><span class="digit">0</span></span>
+        <span class="lbl" id="counterLabel"><b>來過的人次</b><small>正在計算</small></span>
+      </div>
+    </div>
+
+    <div class="encourage" id="dailyEncourage"></div>
+
+    <div class="section-head"><span class="dot"></span><h2>今天想去哪裡？</h2></div>
+    <div class="doors">
+      <a class="door d-jump" href="#jump">
+        <span class="door-art" data-art="door-jump"></span>
+        <h3>跳繩星球</h3>
+        <p>嬨嬨的跳繩基地</p><span class="go">進去看看</span>
+      </a>
+      <a class="door d-wushu" href="#wushu">
+        <span class="door-art" data-art="door-wushu"></span>
+        <h3>武術道場</h3>
+        <p>寬寬的練功房</p><span class="go">進去看看</span>
+      </a>
+      <a class="door d-english" href="#english">
+        <span class="door-art" data-art="door-english"></span>
+        <h3>一起玩英文</h3>
+        <p>姐弟一起去探險</p><span class="go">進去看看</span>
+      </a>
+    </div>
+
+    <div class="panel center" style="margin-top:26px">
+      <div class="eyebrow">今天的一句英文</div>
+      <div id="dailyLine" style="font-size:22px;font-weight:800;margin-top:8px"></div>
+    </div>
+
+    <div class="section-head" style="margin-top:30px"><span class="dot"></span><h2>更多小角落</h2></div>
+    <div class="mini-entries">
+      <a class="mini" href="#wishes"><span class="emoji">💫</span><b>許願池</b><small>想要什麼跟爸爸說</small></a>
+      <a class="mini" href="#honors"><span class="emoji">🏅</span><b>榮譽牆</b><small>我收集的徽章</small></a>
+      <a class="mini" href="#dad"><span class="emoji">💌</span><b>爸爸的話</b><small>給你們的悄悄話</small></a>
+      <a class="mini" href="#about"><span class="emoji">🤖</span><b>這個網站怎麼來的</b><small>認識 AI 這個幫手</small></a>
+    </div>
+
+    <div class="panel" style="margin-top:26px">
+      <h3>一句話說完這裡是什麼</h3>
+      <p class="lead" style="margin-top:8px">這裡不是考試，也不比誰厲害。你每做到一件事，就收集一顆星、一個徽章，把自己的進步好好收起來。慢慢長大的，不只是你們，還有這個小天地。</p>
+    </div>
+  </section>
+
+  <!-- ================= 英文 ================= -->
+  <section class="view" id="view-english" hidden>
+    <div class="hero">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">一起玩英文</div>
+          <h2>英文不是背，是去探險</h2>
+          <p class="lead">聽、說、讀、寫，八種玩法一次到位。這裡會看你是誰，自動幫你選難度：嬨嬨走 Grade 2，寬寬走 Grade 3。</p>
+        </div>
+        <div class="hero-art" data-art="hero-owl" style="max-width:360px"></div>
+      </div>
+    </div>
+
+    <div class="panel" id="enWho"></div>
+
+    <div class="section-head" style="margin-top:22px"><span class="dot"></span><h3>選一個玩法</h3></div>
+    <div class="mode-grid" id="enModes"></div>
+
+    <div id="enPlay" style="margin-top:20px"></div>
+  </section>
+
+  <!-- ================= 跳繩 ================= -->
+  <section class="view" id="view-jump" hidden>
+    <div class="hero">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">嬨嬨的跳繩星球</div>
+          <h2>你的每一次進步，都被好好收著</h2>
+          <p class="lead">這一區是你自己的成長基地。學會一個新技巧就點亮一顆星，練完就記一筆，看著自己越跳越厲害。這裡不跟任何人比，只跟昨天的自己比。</p>
+        </div>
+        <div class="hero-art" data-art="hero-jump" style="max-width:340px"></div>
+      </div>
+    </div>
+
+    <div class="section-head"><span class="dot"></span><h3>英雄牆</h3><span class="badge-pill">哇，好厲害</span></div>
+    <div class="panel" id="jumpHeroes"></div>
+
+    <div class="section-head" style="margin-top:26px"><span class="dot"></span><h3>跳繩的精神</h3></div>
+    <div class="panel" id="jumpSpirit"></div>
+
+    <div class="course-card" id="courseCard" style="margin-top:26px"></div>
+
+    <div class="section-head" style="margin-top:26px"><span class="dot"></span><h3>今日挑戰</h3></div>
+    <div class="panel" id="jumpChallenge"></div>
+
+    <div class="section-head" style="margin-top:30px"><span class="dot"></span><h3>先護好自己</h3></div>
+    <div class="panel" id="jumpSafety"></div>
+
+    <div class="section-head" style="margin-top:30px"><span class="dot"></span><h3>跳繩闖關</h3></div>
+    <div class="stage-progress" id="jumpProgress"></div>
+    <div class="stage-map" id="jumpStages"></div>
+
+    <div class="section-head" style="margin-top:30px"><span class="dot"></span><h3>我的練習日誌</h3></div>
+    <div class="panel">
+      <form id="jumpLogForm" class="stack">
+        <div class="form-row">
+          <div class="field"><label>日期</label><input type="date" id="jDate"></div>
+          <div class="field"><label>練了幾分鐘</label><input type="number" id="jMins" min="0" placeholder="例如 20"></div>
+          <div class="field"><label>最高連續幾下</label><input type="number" id="jBest" min="0" placeholder="例如 60"></div>
+          <div class="field"><label>今天解鎖了什麼（可留白）</label><input type="text" id="jNote" placeholder="例如 前交叉"></div>
+        </div>
+        <button class="btn" type="submit">記一筆 ✏️</button>
+      </form>
+      <div class="bars" id="jumpBars" style="margin-top:26px"></div>
+      <div class="log-list" id="jumpLogList" style="margin-top:16px"></div>
+    </div>
+
+    <div class="section-head" style="margin-top:30px"><span class="dot"></span><h3>比賽倒數</h3></div>
+    <div class="panel center">
+      <div class="form-row" style="max-width:420px;margin:0 auto 16px">
+        <div class="field"><label>下一次比賽的日期</label><input type="date" id="raceDate"></div>
+        <div class="field" style="justify-content:flex-end"><button class="btn ghost" id="raceSave">設定倒數</button></div>
+      </div>
+      <div class="countdown" id="countdown"></div>
+    </div>
+
+    <div class="section-head" style="margin-top:30px"><span class="dot"></span><h3>節拍器</h3></div>
+    <div class="panel" id="jumpMetronome"></div>
+
+    <div class="panel" style="margin-top:24px">
+      <div class="eyebrow">你知道嗎</div>
+      <p class="lead" id="jumpFact" style="margin-top:6px"></p>
+    </div>
+
+    <div class="section-head" style="margin-top:30px"><span class="dot"></span><h3>秀給爸媽看</h3></div>
+    <div id="jumpShowParent"></div>
+
+    <div class="panel center" style="margin-top:24px"><p class="lead">結論：技巧會一個一個點亮，紀錄會一天一天長高。你要做的，只是今天也去跳一下。</p></div>
+  </section>
+
+  <!-- ================= 武術 ================= -->
+  <section class="view" id="view-wushu" hidden>
+    <div class="hero">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">寬寬的武術道場</div>
+          <h2>練武先練心，基本功最帥</h2>
+          <p class="lead">高手都是從基本功開始的。手型、步型、腿法，一項一項學會、一項一項收集。這裡也藏著習武的規矩：對人有禮，對自己負責。</p>
+        </div>
+        <div class="hero-art" data-art="hero-wushu" style="max-width:340px"></div>
+      </div>
+    </div>
+
+    <div class="quote"><span id="virtueLine"></span></div>
+
+    <div class="section-head" style="margin-top:24px"><span class="dot"></span><h3>英雄牆</h3><span class="badge-pill">哇，好帥</span></div>
+    <div class="panel" id="wushuHeroes"></div>
+
+    <div class="section-head" style="margin-top:24px"><span class="dot"></span><h3>武術的精神</h3></div>
+    <div class="panel" id="wushuSpirit"></div>
+
+    <div class="section-head" style="margin-top:24px"><span class="dot"></span><h3>今日挑戰</h3></div>
+    <div class="panel" id="wushuChallenge"></div>
+
+    <div class="section-head" style="margin-top:30px"><span class="dot"></span><h3>先護好自己</h3></div>
+    <div class="panel" id="wushuSafety"></div>
+
+    <div class="section-head" style="margin-top:30px"><span class="dot"></span><h3>武術闖關</h3></div>
+    <div class="stage-progress" id="wushuProgress"></div>
+    <div class="stage-map" id="wushuStages"></div>
+
+    <div class="section-head" style="margin-top:30px"><span class="dot"></span><h3>練功打卡</h3></div>
+    <div class="panel">
+      <form id="wushuLogForm" class="stack">
+        <div class="form-row">
+          <div class="field"><label>今天練了哪一項</label>
+            <select id="wItem">
+              <option>蹲馬步</option><option>弓步</option><option>正踢</option><option>側踢</option>
+              <option>拳法</option><option>掌法</option><option>套路</option><option>其他</option>
+            </select>
+          </div>
+          <div class="field"><label>練了幾分鐘</label><input type="number" id="wMins" min="0" placeholder="例如 15"></div>
+        </div>
+        <button class="btn" type="submit">打卡 🥋</button>
+      </form>
+      <p class="lead" style="margin-top:16px">這個月已經打卡 <b id="wushuCount">0</b> 次，很紮實。</p>
+      <div class="log-list" id="wushuLogList" style="margin-top:10px"></div>
+    </div>
+
+    <div class="panel" style="margin-top:24px">
+      <div class="eyebrow">你知道嗎</div>
+      <p class="lead" id="wushuFact" style="margin-top:6px"></p>
+    </div>
+
+    <div class="section-head" style="margin-top:30px"><span class="dot"></span><h3>秀給爸媽看</h3></div>
+    <div id="wushuShowParent"></div>
+
+    <div class="panel center" style="margin-top:24px"><p class="lead">結論：每天蹲一點馬步，紮實就是這樣一天一天堆出來的。招式會忘，武德不會忘。</p></div>
+  </section>
+
+  <!-- ================= 許願池 ================= -->
+  <section class="view" id="view-wishes" hidden>
+    <div class="section-head" style="margin-top:20px"><span class="dot"></span><h2>許願池</h2></div>
+    <div class="panel">
+      <p class="lead">想要這個網站多一個什麼？想加什麼遊戲、什麼功能、什麼小角落，都可以許願。爸爸會用 AI 這個幫手，慢慢把你們的願望變出來。</p>
+      <form id="wishForm" class="stack" style="margin-top:16px">
+        <div class="chip-row" id="wishWho">
+          <button type="button" class="chip on" data-who="cici">嬨嬨</button>
+          <button type="button" class="chip" data-who="kuan">寬寬</button>
+          <button type="button" class="chip" data-who="all">全家</button>
+        </div>
+        <div class="wish-input">
+          <textarea id="wishText" placeholder="例如：我想要一個跳繩的節拍器！"></textarea>
+        </div>
+        <button class="btn" type="submit">投進許願池 💫</button>
+      </form>
+    </div>
+    <div class="wish-list" id="wishList"></div>
+  </section>
+
+  <!-- ================= 榮譽牆 ================= -->
+  <section class="view" id="view-honors" hidden>
+    <div class="section-head" style="margin-top:20px"><span class="dot"></span><h2>榮譽牆</h2></div>
+    <div class="panel center">
+      <p class="lead"><b id="honorWho"></b> 收集的徽章。這些不是分數，是「我做到了」的收藏。灰色的，是還在等你去解鎖的。</p>
+      <p class="badge-pill" id="honorCount" style="margin-top:10px"></p>
+    </div>
+    <div class="honor-grid" id="honorGrid" style="margin-top:20px"></div>
+  </section>
+
+  <!-- ================= 爸爸的話 ================= -->
+  <section class="view" id="view-dad" hidden>
+    <div class="section-head" style="margin-top:20px"><span class="dot"></span><h2>爸爸的話</h2></div>
+    <div class="panel">
+      <p class="lead">嬨嬨、寬寬：</p>
+      <p class="lead" style="margin-top:12px">這個小網站，是爸爸熬夜和一個 AI 幫手一起做的。做它的時候我一直在想你們，想著怎麼讓你們每次打開都會笑。</p>
+      <p class="lead" style="margin-top:12px">爸爸不在乎你們跳得多快、招式多漂亮、英文考幾分。我在乎的是，你們願不願意每天多試一下下，願不願意在跌倒以後再站起來。那個願意，比什麼都珍貴。</p>
+      <p class="lead" style="margin-top:12px">嬨嬨，你心思很細，慢慢來沒關係，爸爸看得到你每一點進步。寬寬，你很有衝勁，記得幫忙照顧妹妹，也記得謙虛。你們是彼此最好的隊友。</p>
+      <p class="lead" style="margin-top:12px">想要這裡多什麼，就去許願池告訴我。我們一起，把這個小天地養大。</p>
+      <p class="lead" style="margin-top:16px">愛你們的　爸爸</p>
+    </div>
+  </section>
+
+  <!-- ================= 這個網站怎麼來的 ================= -->
+  <section class="view" id="view-about" hidden>
+    <div class="section-head" style="margin-top:20px"><span class="dot"></span><h2>這個網站是怎麼做出來的</h2></div>
+    <div class="panel stack">
+      <h3>🥪 爸爸出點子，AI 幫忙做</h3>
+      <p class="lead">這個網站是爸爸和一個叫 AI 的工具一起做的。就像做三明治：頭跟尾是爸爸，先想好要做什麼，最後檢查好不好；中間夾的料，是 AI 幫忙寫出來的。點子和把關是人，動手做很多的是 AI。</p>
+      <h3 style="margin-top:10px">🤔 AI 很厲害，但它有時候會說錯</h3>
+      <p class="lead">AI 不是什麼都對。它偶爾會講錯話、記錯事。所以我們有一個好方法：用自己已經知道的事去考它。答對了，很好；答錯了，我們就知道，它也會犯錯，不能全部相信。</p>
+      <div class="panel" style="background:var(--accent-soft)">
+        <b>一起考考 AI</b>
+        <p class="muted" style="margin:8px 0">問它一個你早就知道答案的問題，看它答得對不對。</p>
+        <button class="btn ghost" id="quizBtn">出一題給我看 🎲</button>
+        <p id="quizLine" style="margin-top:12px;font-weight:800"></p>
+      </div>
+      <h3 style="margin-top:10px">🔒 這是我們家的秘密</h3>
+      <p class="lead">這個小天地的網址，只給家裡人。不要隨便給不認識的人，也不要放上你們的真名和照片。網路上的東西要小心，這也是爸爸一直提醒你們的事。</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <span class="privacy">🔒 這是私人家庭網站，只給家人看</span>
+    <p style="margin-top:12px">嬨嬨寬寬的小天地　由爸爸和 AI 幫手一起打造</p>
+  </div>
+</footer>
+
+<canvas id="confetti"></canvas>
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script src="assets/js/config.js?v=9"></script>
+<script src="assets/js/svg.js?v=9"></script>
+<script src="assets/js/pinyin-pro.js?v=9"></script>
+<script src="assets/js/zhuyin.js?v=9"></script>
+<script src="assets/js/data-english.js?v=9"></script>
+<script src="assets/js/data-english-extra.js?v=9"></script>
+<script src="assets/js/data-jump.js?v=9"></script>
+<script src="assets/js/data-wushu.js?v=9"></script>
+<script src="assets/js/data-encourage.js?v=9"></script>
+<script src="assets/js/counter.js?v=9"></script>
+<script src="assets/js/core.js?v=9"></script>
+<script src="assets/js/games.js?v=9"></script>
+<script src="assets/js/app.js?v=9"></script>
+<script>
+  // 「一起考考 AI」的小互動（純好玩，示範 AI 也會錯，要自己查證）
+  (function () {
+    var qs = [
+      "我們家的狗叫什麼名字？（你知道，AI 不一定知道）",
+      "阿嬤最拿手的菜是哪一道？",
+      "今天早上你吃了什麼早餐？",
+      "你最好的朋友叫什麼名字？",
+      "上次去海邊是什麼時候？"
+    ];
+    var btn = document.getElementById("quizBtn");
+    if (btn) btn.onclick = function () {
+      var line = document.getElementById("quizLine");
+      line.textContent = "考題：" + qs[Math.floor(Math.random() * qs.length)];
+      if (window.Core) Core.pop();
+    };
+  })();
+</script>
+</body>
+</html>
