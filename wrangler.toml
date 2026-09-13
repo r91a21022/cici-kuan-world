@@ -1,10 +1,6 @@
 name = "cih-kuan-world"
-main = "worker.js"
 compatibility_date = "2025-01-01"
 
-# 純靜態網站，把整個資料夾當作網頁直接服務。
-# worker.js 會在每個請求前先跑，檢查家人密碼；沒設密碼時照常開放。
+# 純靜態網站，把整個資料夾當作網頁直接服務（不需要程式進入點、不設密碼）。
 [assets]
 directory = "."
-binding = "ASSETS"
-run_worker_first = true
