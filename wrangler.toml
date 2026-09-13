@@ -1,0 +1,6 @@
+name = "cih-kuan-world"
+compatibility_date = "2025-01-01"
+
+# 這是純靜態網站，把整個資料夾當作網頁直接服務（不需要程式進入點）。
+[assets]
+directory = "."
