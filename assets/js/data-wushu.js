@@ -12,7 +12,7 @@ window.DATA_WUSHU = {
   heroes: [
     { title: "靜心中學武術隊　第十屆五個夢公演", id: "-twNCUtUyrI", note: "這就是你們學校靜心的武術隊！超有親切感" },
     { title: "靜心武術隊　表演", id: "vuhKIssvcgM", note: "靜心自己的武術隊，爸爸幫你們找的" },
-    { title: "武術小子　八面金牌　競技武術兄妹", id: "QcQlAjtjwTE", note: "跟你們一樣是兄妹，一起拿金牌，超熱血" },
+    { title: "武術小子　八面金牌　競技武術兄妹", id: "QcQlAjtjwTE", note: "一對兄妹一起拿金牌，就像你們姐弟同心，超熱血" },
     { title: "台北雙園國小　武術隊（兒童節目）", id: "lAT66bKXkKI", note: "台灣國小的武術隊，就跟你的校隊一樣" }
   ],
 

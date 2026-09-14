@@ -143,7 +143,8 @@ window.Core = (function () {
   const ZONE = { home: "home", english: "english", jump: "jump", wushu: "wushu",
     wishes: "family", honors: "family", dad: "family", about: "family" };
   function route(hash) {
-    const name = (hash || location.hash || "#home").replace("#", "") || "home";
+    let name = (hash || location.hash || "#home").replace("#", "") || "home";
+    if (name === "ai") name = "about"; // 規格書用 #ai，實際頁面是 #about，兩個都通到同一頁
     const views = document.querySelectorAll(".view");
     let found = false;
     views.forEach(v => {

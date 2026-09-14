@@ -11,7 +11,7 @@
 <meta property="og:image" content="assets/img/og.svg">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E%F0%9F%8C%9F%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/css/theme.css?v=10">
+<link rel="stylesheet" href="assets/css/theme.css?v=11">
 </head>
 <body data-zone="home">
 
@@ -89,7 +89,7 @@
       </div>
     </div>
 
-    <div class="encourage" id="dailyEncourage"></div>
+    <div class="enc-wrap" id="dailyEncourage"></div>
 
     <div class="section-head"><span class="dot"></span><h2>今天想去哪裡？</h2></div>
     <div class="doors">
@@ -136,7 +136,7 @@
         <div class="hero-copy">
           <div class="eyebrow">一起玩英文</div>
           <h2>英文不是背，是去探險</h2>
-          <p class="lead">聽、說、讀、寫，八種玩法一次到位。這裡會看你是誰，自動幫你選難度：嬨嬨走 Grade 2，寬寬走 Grade 3。</p>
+          <p class="lead">聽、說、讀、寫，八種玩法一次到位。這裡會記得你走到哪、幫你接下去。嬨嬨走森林路線，寬寬走海洋路線，兩條路不一樣，各走各的。</p>
         </div>
         <div class="hero-art" data-art="hero-owl" style="max-width:360px"></div>
       </div>
@@ -194,6 +194,8 @@
       </form>
       <div class="bars" id="jumpBars" style="margin-top:26px"></div>
       <div class="log-list" id="jumpLogList" style="margin-top:16px"></div>
+      <div class="trail-head">闖關的軌跡（過關和卡住，都一樣算數）</div>
+      <div class="trail" id="jumpTrail"></div>
     </div>
 
     <div class="section-head" style="margin-top:30px"><span class="dot"></span><h3>比賽倒數</h3></div>
@@ -266,6 +268,8 @@
       </form>
       <p class="lead" style="margin-top:16px">這個月已經打卡 <b id="wushuCount">0</b> 次，很紮實。</p>
       <div class="log-list" id="wushuLogList" style="margin-top:10px"></div>
+      <div class="trail-head">闖關的軌跡（過關和卡住，都一樣算數）</div>
+      <div class="trail" id="wushuTrail"></div>
     </div>
 
     <div class="panel" style="margin-top:24px">
@@ -316,7 +320,7 @@
       <p class="lead">嬨嬨、寬寬：</p>
       <p class="lead" style="margin-top:12px">這個小網站，是爸爸熬夜和一個 AI 幫手一起做的。做它的時候我一直在想你們，想著怎麼讓你們每次打開都會笑。</p>
       <p class="lead" style="margin-top:12px">爸爸不在乎你們跳得多快、招式多漂亮、英文考幾分。我在乎的是，你們願不願意每天多試一下下，願不願意在跌倒以後再站起來。那個願意，比什麼都珍貴。</p>
-      <p class="lead" style="margin-top:12px">嬨嬨，你心思很細，慢慢來沒關係，爸爸看得到你每一點進步。寬寬，你很有衝勁，記得幫忙照顧妹妹，也記得謙虛。你們是彼此最好的隊友。</p>
+      <p class="lead" style="margin-top:12px">嬨嬨，你心思很細，慢慢來沒關係，爸爸看得到你每一點進步，也謝謝你這個姐姐，總是讓著弟弟。寬寬，你很有衝勁，記得疼疼姐姐，也記得對人謙虛。你們一個姐姐、一個弟弟，是彼此最好的隊友。</p>
       <p class="lead" style="margin-top:12px">想要這裡多什麼，就去許願池告訴我。我們一起，把這個小天地養大。</p>
       <p class="lead" style="margin-top:16px">愛你們的　爸爸</p>
     </div>
@@ -327,17 +331,25 @@
     <div class="section-head" style="margin-top:20px"><span class="dot"></span><h2>這個網站是怎麼做出來的</h2></div>
     <div class="panel stack">
       <h3>🥪 爸爸出點子，AI 幫忙做</h3>
-      <p class="lead">這個網站是爸爸和一個叫 AI 的工具一起做的。就像做三明治：頭跟尾是爸爸，先想好要做什麼，最後檢查好不好；中間夾的料，是 AI 幫忙寫出來的。點子和把關是人，動手做很多的是 AI。</p>
-      <h3 style="margin-top:10px">🤔 AI 很厲害，但它有時候會說錯</h3>
-      <p class="lead">AI 不是什麼都對。它偶爾會講錯話、記錯事。所以我們有一個好方法：用自己已經知道的事去考它。答對了，很好；答錯了，我們就知道，它也會犯錯，不能全部相信。</p>
-      <div class="panel" style="background:var(--accent-soft)">
-        <b>一起考考 AI</b>
-        <p class="muted" style="margin:8px 0">問它一個你早就知道答案的問題，看它答得對不對。</p>
-        <button class="btn ghost" id="quizBtn">出一題給我看 🎲</button>
-        <p id="quizLine" style="margin-top:12px;font-weight:800"></p>
-      </div>
-      <h3 style="margin-top:10px">🔒 這是我們家的秘密</h3>
-      <p class="lead">這個小天地的網址，只給家裡人。不要隨便給不認識的人，也不要放上你們的真名和照片。網路上的東西要小心，這也是爸爸一直提醒你們的事。</p>
+      <p class="lead">這個網站是爸爸和一個叫 AI 的工具一起做的。就像做三明治：最上面和最下面的麵包是爸爸，先想好要做什麼、最後檢查好不好；中間夾的料，是 AI 幫忙寫出來的。</p>
+      <p class="lead"><b>一句話記住：AI 很會做，但決定要做什麼、做得對不對，是人的事。</b></p>
+    </div>
+
+    <div class="panel stack" style="margin-top:20px">
+      <h3>🤔 AI 有時候會講錯，我們有辦法檢查</h3>
+      <p class="lead">AI 不是什麼都對，它偶爾會講錯話、記錯事。爸爸教你們四個檢查的好方法：</p>
+      <div id="aiVerify" class="ai-steps"></div>
+    </div>
+
+    <div class="panel stack" style="margin-top:20px">
+      <h3>🎲 一起考考 AI</h3>
+      <p class="lead">挑一個你早就知道答案的問題，去問問看 AI，再回來按「它答對了」或「它答錯了」，看看會發生什麼事。</p>
+      <div id="aiQuiz" class="ai-quiz"></div>
+    </div>
+
+    <div class="panel stack" style="margin-top:20px">
+      <h3>🔒 這是我們家的秘密小天地</h3>
+      <p class="lead">這個小天地的網址，只給家裡人。不要隨便給不認識的人，也不要放上你們的真名和照片。網路上的東西要小心，這是爸爸一直提醒你們的事。</p>
     </div>
   </section>
 
@@ -353,36 +365,19 @@
 <canvas id="confetti"></canvas>
 <div class="toast-wrap" id="toastWrap"></div>
 
-<script src="assets/js/config.js?v=10"></script>
-<script src="assets/js/svg.js?v=10"></script>
-<script src="assets/js/pinyin-pro.js?v=10"></script>
-<script src="assets/js/zhuyin.js?v=10"></script>
-<script src="assets/js/data-english.js?v=10"></script>
-<script src="assets/js/data-english-extra.js?v=10"></script>
-<script src="assets/js/data-jump.js?v=10"></script>
-<script src="assets/js/data-wushu.js?v=10"></script>
-<script src="assets/js/data-encourage.js?v=10"></script>
-<script src="assets/js/counter.js?v=10"></script>
-<script src="assets/js/core.js?v=10"></script>
-<script src="assets/js/games.js?v=10"></script>
-<script src="assets/js/app.js?v=10"></script>
-<script>
-  // 「一起考考 AI」的小互動（純好玩，示範 AI 也會錯，要自己查證）
-  (function () {
-    var qs = [
-      "我們家的狗叫什麼名字？（你知道，AI 不一定知道）",
-      "阿嬤最拿手的菜是哪一道？",
-      "今天早上你吃了什麼早餐？",
-      "你最好的朋友叫什麼名字？",
-      "上次去海邊是什麼時候？"
-    ];
-    var btn = document.getElementById("quizBtn");
-    if (btn) btn.onclick = function () {
-      var line = document.getElementById("quizLine");
-      line.textContent = "考題：" + qs[Math.floor(Math.random() * qs.length)];
-      if (window.Core) Core.pop();
-    };
-  })();
-</script>
+<script src="assets/js/config.js?v=11"></script>
+<script src="assets/js/svg.js?v=11"></script>
+<script src="assets/js/pinyin-pro.js?v=11"></script>
+<script src="assets/js/zhuyin.js?v=11"></script>
+<script src="assets/js/data-english.js?v=11"></script>
+<script src="assets/js/data-english-extra.js?v=11"></script>
+<script src="assets/js/data-jump.js?v=11"></script>
+<script src="assets/js/data-wushu.js?v=11"></script>
+<script src="assets/js/data-encourage.js?v=11"></script>
+<script src="assets/js/data-ai.js?v=11"></script>
+<script src="assets/js/counter.js?v=11"></script>
+<script src="assets/js/core.js?v=11"></script>
+<script src="assets/js/games.js?v=11"></script>
+<script src="assets/js/app.js?v=11"></script>
 </body>
 </html>

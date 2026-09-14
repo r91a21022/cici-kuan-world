@@ -1,5 +1,5 @@
 /* ============================================================
-   英文單字庫（分程度版・嬨嬨 Grade 2 / 寬寬 Grade 3）
+   英文單字庫（兩條不一樣的探險路線・嬨嬨走森林、寬寬走海洋，各走各的）
    資料格式（每個單字一行，複製就能新增）：
    { en:"英文", zh:"中文", ex:"英文例句", emoji:"表情符號", topic:"主題" }
    - 參考 US HMH Into Reading G2/G3 常見字，拼字皆已校對。
@@ -9,7 +9,7 @@
 window.DATA_ENGLISH = {
   levels: {
     cici: {
-      label: "嬨嬨・Grade 2",
+      label: "嬨嬨的森林路線 🌲",
       topics: ["大自然 Nature", "動物 Animals", "天氣 Weather", "交通工具 Transport"],
       words: [
         // ---- 大自然 Nature ----
@@ -62,7 +62,7 @@ window.DATA_ENGLISH = {
       ]
     },
     kuan: {
-      label: "寬寬・Grade 3",
+      label: "寬寬的海洋路線 🌊",
       topics: ["科學 Science", "太空 Space", "地理 Geography", "職業 Jobs"],
       words: [
         // ---- 科學 Science ----

@@ -114,10 +114,44 @@
     tog.onclick = function () { if (metroTimer) stop(); else start(); };
   }
 
-  /* 通用闖關引擎：跳繩和武術共用 */
+  /* 小步的小慶祝：比整關過關小一階（輕音效＋一句話，不撒彩帶） */
+  function miniCheer(msg) { C.pop(); C.toast(msg || "⭐ 這一步學會了！", true); }
+
+  /* 卡住時給的溫暖回應：過程導向、不評價、不喊空泛的加油 */
+  var STUCK_LINES = [
+    "卡住，表示你在挑戰比昨天更難的東西，這是好事。",
+    "記下來了。明天再試一次，身體會記得今天練的。",
+    "高手都是卡很多次才過的，你現在正在做他們做過的事。",
+    "會卡住，代表你有認真在試，這比一次就過更了不起。",
+    "先深呼吸。把下面最小的一個動作挑出來，今天先練那一個就好。",
+    "沒過關不會扣掉任何星星，你今天的努力一樣被好好記下來了。"
+  ];
+
+  function starRow(done, total) {
+    var s = ""; for (var i = 0; i < total; i++) s += (i < done ? "⭐" : "☆"); return s;
+  }
+
+  /* 闖關軌跡：把「過關」和「卡住」並列，權重相同、不用紅色也不分好壞 */
+  function renderTrail(zk, elSel, stages) {
+    var el = document.querySelector(elSel); if (!el) return;
+    var cleared = C.load(zk + ".stages", {});
+    var stuck = C.load(zk + ".stuck", []);
+    var items = [];
+    (stages || []).forEach(function (s) {
+      if (cleared[s.id]) items.push("<div class='trail-item'><span class='ti-ic'>⭐</span><span>通過了「" + shortName(s.name) + "」</span></div>");
+    });
+    stuck.slice().reverse().forEach(function (r) {
+      items.push("<div class='trail-item'><span class='ti-ic'>🤔</span><span>" + (r.date || "") + "　在「" + shortName(r.stage || "") + "」卡了一下" + (r.note ? "：" + r.note : "") + "</span></div>");
+    });
+    el.innerHTML = items.length ? items.join("")
+      : "<p class='muted'>這裡會記錄你的闖關軌跡：過關會留下一顆星，卡住了也會記一筆。兩個都一樣算數。</p>";
+  }
+
+  /* 通用闖關引擎：跳繩和武術共用。每個小步可以打勾，全部勾滿就過關。 */
   function renderStageZone(cfg) {
     var data = cfg.data, zk = cfg.zoneKey, stages = data.stages || [];
     var cleared = C.load(zk + ".stages", {});
+    var steps = C.load(zk + ".steps", {});
     var firstUndone = stages.findIndex(function (s) { return !cleared[s.id]; });
     if (firstUndone < 0) firstUndone = stages.length;
     var prog = "";
@@ -131,27 +165,90 @@
     var el = document.querySelector(cfg.stagesEl);
     el.innerHTML = stages.map(function (s) {
       var done = !!cleared[s.id];
+      var total = s.steps.length, checkedN = 0;
+      s.steps.forEach(function (t, i) { if (steps[s.id + ":" + i]) checkedN++; });
       return `<div class="stage ${done ? 'done' : ''}">
-        <div class="stage-head"><span class="em">${s.emoji}</span><h3>${s.name}</h3></div>
+        <div class="stage-head"><span class="em">${s.emoji}</span><h3>${s.name}</h3><span class="stage-stars" title="學會的小步">${starRow(checkedN, total)}</span></div>
         <div class="stage-goal">🎯 ${s.goal}</div>
         ${s.video ? `<div class="vlabel">🎬 看示範動作</div>${videoFacade(s.video.id, s.video.title)}` : ''}
-        <ul class="steps">${s.steps.map(function (t, i) { return `<li><span class="n">${i + 1}</span><span>${t}</span></li>`; }).join("")}</ul>
-        <button class="btn clearbtn block" data-stage="${s.id}">${done ? '已過關 ✓' : '我過關了！'}</button>
+        <p class="steps-hint">每學會一個小動作就打一個勾，全部勾滿，這一關就過了。</p>
+        <ul class="steps checkable">${s.steps.map(function (t, i) {
+          var ck = !!steps[s.id + ":" + i];
+          return `<li class="step ${ck ? 'checked' : ''}"><button class="step-check" data-stage="${s.id}" data-i="${i}" aria-pressed="${ck}" aria-label="學會這一步就打勾">${ck ? '✓' : ''}</button><span class="stext">${t}</span></li>`;
+        }).join("")}</ul>
+        <div class="stage-actions">
+          <button class="btn clearbtn" data-stage="${s.id}">${done ? '已過關 ✓' : '我全會了，過關！'}</button>
+          <button class="btn ghost stuckbtn" data-stage="${s.id}">我今天卡住了 🤔</button>
+        </div>
+        <div class="stuck-box" id="stuck-${zk}-${s.id}" hidden>
+          <p class="stuck-say" id="stucksay-${zk}-${s.id}"></p>
+          <div class="wish-input"><textarea class="stuck-note" id="stucknote-${zk}-${s.id}" placeholder="卡在哪裡？可以不填"></textarea></div>
+          <button class="btn ghost stuck-save" data-stage="${s.id}" style="margin-top:8px">記下來 💛</button>
+          <p class="stuck-hint">💡 先看上面的分解步驟，挑一個最小的動作，今天先把那一個練會就好。</p>
+        </div>
       </div>`;
     }).join("");
+
+    function clearStage(id) {
+      var cl = C.load(zk + ".stages", {});
+      if (cl[id]) return;
+      cl[id] = true; C.save(zk + ".stages", cl);
+      var s = stages.find(function (x) { return x.id === id; });
+      var sp = C.load(zk + ".steps", {});
+      s.steps.forEach(function (t, i) { sp[id + ":" + i] = true; }); C.save(zk + ".steps", sp);
+      C.awardBadge(zk + "_" + id, (zk === "jump" ? "跳繩・" : "武術・") + shortName(s.name));
+      C.celebrate("過關！太強了！");
+    }
+
+    el.querySelectorAll(".step-check").forEach(function (btn) {
+      btn.onclick = function () {
+        var id = btn.dataset.stage, i = +btn.dataset.i, key = id + ":" + i;
+        var sp = C.load(zk + ".steps", {});
+        sp[key] = !sp[key]; C.save(zk + ".steps", sp);
+        if (sp[key]) miniCheer("⭐ 這一步學會了！");
+        var s = stages.find(function (x) { return x.id === id; });
+        var all = s.steps.every(function (t, k) { return sp[id + ":" + k]; });
+        if (all) clearStage(id);
+        renderStageZone(cfg);
+      };
+    });
 
     el.querySelectorAll(".clearbtn").forEach(function (btn) {
       btn.onclick = function () {
         var id = btn.dataset.stage, cl = C.load(zk + ".stages", {});
-        cl[id] = !cl[id]; C.save(zk + ".stages", cl);
-        if (cl[id]) {
-          var s = stages.find(function (x) { return x.id === id; });
-          C.awardBadge(zk + "_" + id, (zk === "jump" ? "跳繩・" : "武術・") + shortName(s.name));
-          C.celebrate("過關！太強了！");
-        }
-        renderStageZone(cfg);
+        if (cl[id]) { cl[id] = false; C.save(zk + ".stages", cl); renderStageZone(cfg); return; }
+        clearStage(id); renderStageZone(cfg);
       };
     });
+
+    el.querySelectorAll(".stuckbtn").forEach(function (btn) {
+      btn.onclick = function () {
+        var id = btn.dataset.stage;
+        var box = document.getElementById("stuck-" + zk + "-" + id);
+        var say = document.getElementById("stucksay-" + zk + "-" + id);
+        var willOpen = box && box.hidden;
+        if (willOpen && say) say.textContent = STUCK_LINES[Math.floor(Math.random() * STUCK_LINES.length)];
+        if (box) box.hidden = !box.hidden;
+        C.pop();
+        if (window.Zhuyin) Zhuyin.refresh();
+      };
+    });
+
+    el.querySelectorAll(".stuck-save").forEach(function (btn) {
+      btn.onclick = function () {
+        var id = btn.dataset.stage, s = stages.find(function (x) { return x.id === id; });
+        var ta = document.getElementById("stucknote-" + zk + "-" + id);
+        var list = C.load(zk + ".stuck", []);
+        list.push({ stage: s.name, note: (ta && ta.value ? ta.value.trim() : ""), date: new Date().toLocaleDateString("zh-TW"), at: Date.now() });
+        C.save(zk + ".stuck", list);
+        C.toast("記下來了，明天再來 💛", true);
+        var box = document.getElementById("stuck-" + zk + "-" + id); if (box) box.hidden = true;
+        if (cfg.trailEl) renderTrail(zk, cfg.trailEl, stages);
+      };
+    });
+
+    if (cfg.trailEl) renderTrail(zk, cfg.trailEl, stages);
+    if (window.Zhuyin) Zhuyin.refresh();
   }
 
   /* ---------- 頁首與首頁的圖 ---------- */
@@ -177,10 +274,10 @@
     if (box) box.innerHTML = `<b>${d.en}</b><span class="muted">　${d.zh}</span>
       <button class="say btn ghost" style="min-height:40px;padding:0 16px" id="daySay">🔊 唸給我聽</button>`;
     const say = $("#daySay"); if (say) say.onclick = () => C.speak(d.en);
-    var pr = C.profile === "kuan" ? "kuan" : "cici";
-    var set = (window.DATA_ENCOURAGE && DATA_ENCOURAGE[pr]) || [];
-    var enc = $("#dailyEncourage");
-    if (enc && set.length) {
+    // 每次刷新，嬨嬨和寬寬各自換一句不重複的話（兩人對稱，一人一張）
+    function encCard(pr) {
+      var set = (window.DATA_ENCOURAGE && DATA_ENCOURAGE[pr]) || [];
+      if (!set.length) return "";
       var lastKey = "xkxk.enc.last." + pr;
       var idx = Math.floor(Math.random() * set.length);
       if (set.length > 1) {
@@ -189,9 +286,11 @@
       }
       C.safeSet(lastKey, idx);
       var q = set[idx];
-      enc.innerHTML = `<div class="ava2">${pr === "kuan" ? ART.kuan() : ART.cici()}</div>
-        <div><div class="eyebrow">給${pr === "kuan" ? "寬寬" : "嬨嬨"}的一句話</div><p class="enc-quote">${q}</p></div>`;
+      return `<div class="encourage"><div class="ava2">${pr === "kuan" ? ART.kuan() : ART.cici()}</div>
+        <div><div class="eyebrow">給${pr === "kuan" ? "寬寬" : "嬨嬨"}的一句話</div><p class="enc-quote">${q}</p></div></div>`;
     }
+    var enc = $("#dailyEncourage");
+    if (enc) enc.innerHTML = encCard("cici") + encCard("kuan");
     if (!counterMounted) { C.mountCounter(); counterMounted = true; }
     if (window.Zhuyin) Zhuyin.refresh();
   }
@@ -203,7 +302,7 @@
     if (!window.Games || !window.DATA_ENGLISH || !DATA_ENGLISH.levels) { if (play) play.innerHTML = "<p class='muted'>英文內容載入中，稍等一下…</p>"; return; }
     var lv = Games.level();
     var w = C.profile === "kuan" ? "寬寬" : "嬨嬨";
-    $("#enWho").innerHTML = "<div class='eyebrow'>現在是 " + w + " 的英文</div><p class='lead' style='margin-top:6px'>難度：<b>" + (lv ? lv.label : "") + "</b>。想換人玩，點右上角的頭像。</p>";
+    $("#enWho").innerHTML = "<div class='eyebrow'>現在是" + (lv ? lv.label : (w + "的英文")) + "</div><p class='lead' style='margin-top:6px'>這裡會記得你走到哪、幫你接下去，慢慢往前走就好。想換人玩，點右上角的頭像。</p>";
     $("#enModes").innerHTML = Games.MODES.map(function (m) {
       return "<button class='mode-btn " + (m.id === enMode ? "on" : "") + "' data-m='" + m.id + "'><span class='me'>" + m.emoji + "</span><b>" + m.name + "</b><small>" + m.skill + "</small></button>";
     }).join("");
@@ -219,7 +318,7 @@
     $("#courseCard").innerHTML = `<div class="ci">🎓</div><div class="ct"><b>${c.name}</b><small>${c.desc}</small></div>
       <a class="btn" href="${c.url}" target="_blank" rel="noopener">進入課程 →</a>`;
     renderHeroes("#jumpHeroes", DATA_JUMP.heroes);
-    renderStageZone({ data: DATA_JUMP, zoneKey: "jump", stagesEl: "#jumpStages", progressEl: "#jumpProgress" });
+    renderStageZone({ data: DATA_JUMP, zoneKey: "jump", stagesEl: "#jumpStages", progressEl: "#jumpProgress", trailEl: "#jumpTrail" });
     renderJumpLog();
     renderCountdown();
     $("#jumpFact").textContent = DATA_JUMP.facts[Math.floor(Math.random() * DATA_JUMP.facts.length)];
@@ -259,7 +358,7 @@
   /* ---------- 武術道場 ---------- */
   function renderWushu() {
     renderHeroes("#wushuHeroes", DATA_WUSHU.heroes);
-    renderStageZone({ data: DATA_WUSHU, zoneKey: "wushu", stagesEl: "#wushuStages", progressEl: "#wushuProgress" });
+    renderStageZone({ data: DATA_WUSHU, zoneKey: "wushu", stagesEl: "#wushuStages", progressEl: "#wushuProgress", trailEl: "#wushuTrail" });
     renderWushuLog();
     $("#virtueLine").textContent = DATA_WUSHU.virtues[new Date().getDate() % DATA_WUSHU.virtues.length];
     if ($("#wushuFact")) $("#wushuFact").textContent = DATA_WUSHU.facts[Math.floor(Math.random() * DATA_WUSHU.facts.length)];
@@ -299,6 +398,39 @@
       </div>`).join("");
     const n = Object.keys(got).length;
     $("#honorCount").textContent = `${who} 已經收集 ${n} 個徽章`;
+  }
+
+  /* ---------- 這個網站怎麼來的（AI 素養頁） ---------- */
+  function renderAbout() {
+    var D = window.DATA_AI; if (!D) return;
+    var vf = $("#aiVerify");
+    if (vf && D.verify) {
+      vf.innerHTML = D.verify.map(function (s) {
+        return `<div class="ai-step"><span class="ai-ic">${s.icon}</span><div><b>${s.title}</b><p class="muted" style="margin-top:2px">${s.text}</p></div></div>`;
+      }).join("");
+    }
+    var qz = $("#aiQuiz");
+    if (qz && D.quiz) {
+      var ans = C.safeGet("xkxk.aiquiz", {});
+      qz.innerHTML = D.quiz.map(function (item, i) {
+        var picked = ans[i];
+        return `<div class="ai-q">
+          <p class="ai-qtext">${item.q}</p>
+          <div class="ai-btns">
+            <button class="btn ghost ai-pick ${picked === 'right' ? 'on' : ''}" data-i="${i}" data-v="right">它答對了 ✅</button>
+            <button class="btn ghost ai-pick ${picked === 'wrong' ? 'on' : ''}" data-i="${i}" data-v="wrong">它答錯了 ❌</button>
+          </div>
+          <p class="ai-sum"${picked ? '' : ' hidden'}>${item.summary}</p>
+        </div>`;
+      }).join("");
+      qz.querySelectorAll(".ai-pick").forEach(function (b) {
+        b.onclick = function () {
+          var a = C.safeGet("xkxk.aiquiz", {}); a[+b.dataset.i] = b.dataset.v; C.safeSet("xkxk.aiquiz", a);
+          C.pop(); renderAbout();
+        };
+      });
+    }
+    if (window.Zhuyin) Zhuyin.refresh();
   }
 
   /* ---------- 綁定固定按鈕 ---------- */
@@ -356,6 +488,7 @@
     if (v === "wushu") renderWushu();
     if (v === "wishes") renderWishes();
     if (v === "honors") renderHonors();
+    if (v === "about") renderAbout();
   });
   document.addEventListener("profilechange", renderProfileViews);
   window.addEventListener("hashchange", () => C.route());
